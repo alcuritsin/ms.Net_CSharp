@@ -15,6 +15,8 @@ namespace Task_02
     {
         static void Main()
         {
+            Console.WriteLine("###  Задание 02   ###\n");
+
             Console.WriteLine("***   Проверка трамвайного билета.   ***\n");
             Console.Write("Введите номер билета (6 цифр):");
 

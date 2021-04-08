@@ -19,9 +19,12 @@ namespace DZ_C__week_1
             {
                 Console.Clear();
 
+                Console.WriteLine("###  Задание 01   ###\n");
+
                 Console.WriteLine("***   Программа считывает нажатие клавишь.   ***");
                 Console.WriteLine($"-- Количество нажатий клавиши `пробел`: {space_counter}");
-                Console.WriteLine("-- Для завершения программы нажмите `точку`!");
+                Console.WriteLine("-- Для завершения программы нажмите `точку`!\n");
+
                 // Console.ReadKey(true) клавишу считывает, но не отображает
                 cki = Console.ReadKey(true);
                 if (cki.Key == ConsoleKey.Spacebar)
@@ -31,8 +34,8 @@ namespace DZ_C__week_1
             } while (cki.Key != ConsoleKey.OemPeriod);
 
             Console.WriteLine($"\n`пробел` нажат: {space_counter} раз(-а).\n");
-            Console.WriteLine("Программа завершена.");
 
+            Console.WriteLine("Программа завершена.");
         }
     }
 }

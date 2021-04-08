@@ -12,7 +12,33 @@ namespace Task_05
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("###  Задание 05   ###\n");
+
+            Console.WriteLine("***  Переворот числа   ***\n");
+
+            int number;
+            int buf;
+            int result=0;
+
+            do
+            {
+                Console.Write("Введите целое, положительное число: "); number = Convert.ToInt32(Console.ReadLine());
+                if (number <= 0)
+                {
+                    Console.WriteLine("\nНекорректные значения. Попробуйте ввести ещё раз: ");
+                }
+            } while (number <= 0);
+
+            buf = number;   //  Делаем копию исходного числа. На случай если нам пригодится исходник...
+            do
+            {   
+                result *= 10; 
+                result += buf % 10;
+                buf /= 10;  //  Работаем с копией числа
+            } while (buf!=0);
+
+            Console.Write($"\n`Перевёртыш`: {result}\n");
+
         }
     }
 }

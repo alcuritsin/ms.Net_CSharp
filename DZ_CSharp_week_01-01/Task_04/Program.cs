@@ -20,7 +20,35 @@ namespace Task_04
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("###  Задание 04   ###\n");
+
+            Console.WriteLine("Ввод исходных значений (только целые, положительные числа).");
+            Console.WriteLine("Значение `B` должно быть больше значения `A`.\n");
+
+            int A;
+            int B;
+
+            do
+            {
+                Console.Write("А = "); A = Convert.ToInt32(Console.ReadLine());
+                Console.Write("B = "); B = Convert.ToInt32(Console.ReadLine());
+                if (!(A > 0 && B > 0 && A < B))
+                {
+                    Console.WriteLine("\nНекорректные значения. Попробуйте ввести ещё раз: ");
+                }
+            } while (!(A> 0 && B>0 && A<B));
+
+            Console.WriteLine();
+            Console.WriteLine("Вывод:\n");
+
+            for (int i = A; i <= B; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    Console.Write($"{i}  ");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
