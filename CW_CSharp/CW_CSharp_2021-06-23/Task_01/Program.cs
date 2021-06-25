@@ -56,7 +56,6 @@ namespace Task_01
                 case "2":   // Строчные 's' заменить на прописные 'S'
 
                     source_line = "";  //  Исходный код
-                    mutation_line = "";  // Мутация кода
 
                     sr = new StreamReader(file_name);
                     sw = new StreamWriter(file_name + "mutation",true);
@@ -64,6 +63,8 @@ namespace Task_01
 
                     while (source_line != null)
                     {
+                        mutation_line = "";  // Мутация кода
+                        
                         source_line = sr.ReadLine();
 
                         bool first_word = true; //  Первое слово?
@@ -120,6 +121,62 @@ namespace Task_01
                     sr.Close(); sw.Close();
 
                     File.Move(file_name + "mutation", file_name, true); //  Перезапись файла исходника мутированным
+
+                    break;
+                case "3":
+                    //    Также в коде программы удалить все «лишние» пробелы и табуляции,
+                    //    оставив только необходимые для разделения операторов.
+                    source_line = "";  //  Исходный код
+
+                    sr = new StreamReader(file_name);
+                    sw = new StreamWriter(file_name + "mutation", true);
+
+
+                    while (source_line != null)
+                    {
+                        //  Прочитать строку из оригинала
+                        source_line = sr.ReadLine();
+
+                        mutation_line = "";  // Мутация кода
+                        
+                        for (int i = 0; i < source_line.Length; i++)
+                        {
+                            //  Пробег по символам в строке.
+                            if (source_line[i] == ' ')
+                            {
+                                //  Если текущий символ пробел 
+                                if (source_line[i + 1] == ' ' || source_line[i + 1] == '\t' || source_line[i-1] == '\t')
+                                {
+                                    //  Если следующий символ пробел ИЛИ табуляция ИЛИ предидущий символ табуляция
+                                    //  Пропустить
+                                    continue;
+                                }
+                            }
+                            else if (source_line[i] == '\t' && source_line[i + 1] == '\t')
+                            {   
+                                //  Иначе Если текущий символ табуляция и следующий символ табляция
+                                //  Пропустить текущий
+                                continue;
+                            }
+                            else
+                            {
+                                // Иначе добавить текущий символ в мутированный накопитель строки.
+                                mutation_line += source_line[i];
+                            }
+                        }
+
+                        //  Запись мутированной строки во временный файл.
+                        sw.WriteLine(mutation_line);
+                    }
+
+                    sr.Close(); sw.Close();
+
+                    File.Move(file_name + "mutation", file_name, true); //  Перезапись файла исходника мутированным
+
+                    break;
+
+                case "4":
+                    //  Записать символы каждой строки программы в другой файл в обратном порядке.
 
                     break;
 
