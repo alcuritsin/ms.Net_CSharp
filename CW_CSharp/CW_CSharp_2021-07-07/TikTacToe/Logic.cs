@@ -16,6 +16,9 @@ namespace TicTacToe
 
         static char[] arr = { 'g', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
+        static int left_ = 0;
+        static int top_ = 3;
+
         static void CheckWin()
         {
             if (arr[7] == arr[8] && arr[8] == arr[9])
@@ -90,22 +93,30 @@ namespace TicTacToe
             }
         }
 
-        public char CheckGame()
+        public char GetGameStatus()
         {
             return arr[0];
         }
+
         public void Board()
         {
-            Console.WriteLine("     |     |     ");
-            Console.WriteLine("  {0}  |  {1}  |  {2}  ", arr[7], arr[8], arr[9]);
-            Console.WriteLine("_____|_____|_____");
-            Console.WriteLine("     |     |     ");
-            Console.WriteLine("  {0}  |  {1}  |  {2}  ", arr[4], arr[5], arr[6]);
-            Console.WriteLine("_____|_____|_____");
-            Console.WriteLine("     |     |     ");
-            Console.WriteLine("  {0}  |  {1}  |  {2}  ", arr[1], arr[2], arr[3]);
-            Console.WriteLine("     |     |     ");
+            for (int i = 1; i <= 9; i++)
+            {
+                if (arr[i] == 'X')
+                {
+                    Print_X(i);
+                }
+                else if (arr[i] == 'O')
+                {
+                    Print_O(i);
+                }
+                else
+                {
+                    Print_Empty(i);
+                }
+            }
         }
+
         public bool FreePosition(int pos)
         {
             if (arr[pos] != 'O' && arr[pos] != 'X')
@@ -123,5 +134,113 @@ namespace TicTacToe
             arr[pos] = player;
             CheckWin();
         }
+
+        private static void Print_X (int pos)
+        {
+            PrintPosition(in pos, out int _left, out int _top);
+            Console.SetCursorPosition(_left, _top);   Console.WriteLine("::::::::::::::::::::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine(":: .===.   .===.  ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::  \\ * \\  / * /  ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::   \\ * \\/ * /   ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::    > *  * <    ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::   / * /\\ * \\   ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::  / * /  \\ * \\  ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine(":: '==='    '===' ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::::::::::::::::::::");
+        }
+        private static void Print_O (int pos)
+        {
+            PrintPosition(in pos, out int _left, out int _top);
+            Console.SetCursorPosition(_left, _top);   Console.WriteLine("::::::::::::::::::::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::   .========.   ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine(":: ./   *  *   \\. ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine(":: |  *  /\\  *  | ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine(":: | *  |  |  * | ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine(":: |  *  \\/  *  | ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine(":: '\\   *  *   /' ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::   '========'   ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::::::::::::::::::::");
+        }
+
+        private static void Print_Empty(int pos)
+        {
+            PrintPosition(in pos, out int _left, out int _top);
+            Console.SetCursorPosition(_left, _top);   Console.WriteLine("::::::::::::::::::::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::                ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine($"::  {pos}             ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::                ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::                ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::                ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::                ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::                ::");
+            Console.SetCursorPosition(_left, ++_top);   Console.WriteLine("::::::::::::::::::::");
+        }
+
+        private static void PrintPosition(in int pos, out int _left, out int _top)
+        {
+            //  Поле:
+            int with = 18;
+            int heigth = 8;
+
+            switch (pos)
+            {
+                case 7:
+                    _left = left_ + with * 0;
+                    _top = top_ + heigth * 0;
+                    break;
+                case 8:
+                    _left = left_ + with * 1;
+                    _top = top_ + heigth * 0;
+                    break;
+                case 9:
+                    _left = left_ + with * 2;
+                    _top = top_ + heigth * 0;
+                    break;
+                case 4:
+                    _left = left_ + with * 0;
+                    _top = top_ + heigth * 1;
+                    break;
+                case 5:
+                    _left = left_ + with * 1;
+                    _top = top_ + heigth * 1;
+                    break;
+                case 6:
+                    _left = left_ + with * 2;
+                    _top = top_ + heigth * 1;
+                    break;
+                case 1:
+                    _left = left_ + with * 0;
+                    _top = top_ + heigth * 2;
+                    break;
+                case 2:
+                    _left = left_ + with * 1;
+                    _top = top_ + heigth * 2;
+                    break;
+                case 3:
+                    _left = left_ + with * 2;
+                    _top = top_ + heigth * 2;
+                    break;
+                default:
+                    _left = 0;
+                    _top = 0;
+                    break;
+            }
+        }
     }
 }
+
+//Signature - подпись
+/*
+-------------------------------------------
+|                                         |
+|   "Компьютерная академия ШАГ"           |
+|   Курс: PD_011                          |
+|   Предмет: Платформа Microsoft .NET     |
+|            и язык программирования C#   |
+|                                         |
+|   Исполнитель: Курицын Алексей          |
+|   Преподаватель: Старинин Андрей        |
+|                                         |
+|   Екатеринбург - 2021                   |
+|                                         |
+-------------------------------------------*/
