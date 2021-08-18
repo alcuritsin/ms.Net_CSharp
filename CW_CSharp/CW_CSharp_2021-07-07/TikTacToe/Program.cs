@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading; // Для использования задержки
 
-namespace TicTacToe
+namespace TicTacToe 
 {
     class Program
     {
@@ -71,7 +71,7 @@ namespace TicTacToe
                 Console.ResetColor();
             }
             Console.ReadKey();
-        }
+        } 
 
         static void ScreenReload()
         {
